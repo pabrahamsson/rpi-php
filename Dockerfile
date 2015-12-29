@@ -1,0 +1,10 @@
+FROM hypriot/rpi-alpine-scratch
+
+RUN apk update && apk add curl ca-certificates php-mysqli php-curl php-gd php-opcache php-apache2 apache2
+
+COPY httpd.conf /etc/apache2/httpd.conf
+VOLUME /var/www/html
+WORKDIR /var/www/html
+EXPOSE 80 443
+CMD ["httpd", "-DFOREGROUND"]
+
